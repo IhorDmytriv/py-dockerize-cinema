@@ -13,8 +13,8 @@ class Command(BaseCommand):
 
         while not db_conn:
             try:
+                connections["default"].cursor()
                 db_conn = connections["default"]
-                db_conn.cursor()
             except OperationalError:
                 attempts += 1
                 self.stdout.write(self.style.WARNING(
